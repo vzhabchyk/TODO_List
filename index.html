@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles/style.css">
   <title>ToDo List</title>
 </head>
 <body>
@@ -14,6 +15,10 @@
       <select name="priority" class="todo-list-form__priority"></select>
       <select name="status" class="todo-list-form__status"></select>
       <input type="button" class="todo-list-form__btn-add" value="Add">
+      <div class="hidden todo-list-form__edit-btns">
+        <input type="button" value="Save">
+        <input type="button" value="Cancel">
+      </div>
     </form>
     <ul class="todo-list-items"></ul>
   </div>
