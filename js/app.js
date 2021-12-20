@@ -2,7 +2,18 @@
 
 const toDoForm = document.forms[0];
 const btnAdd = document.getElementsByClassName('todo-list-form__btn-add')[0];
+let defaultPriority;
+let defaultStatus;
+let priorities = [];
+let statuses = [];
 
+
+function removeToDo(index, toDoListItem) {
+  const toDoListData = getToDos();
+  toDoListData.splice(index, 1);
+  localStorage.setItem('todos', JSON.stringify(toDoListData));
+  toDoListItem.remove();
+}
 
 function showToDoList() {
   const toDoListItems = document.getElementsByClassName('todo-list-items')[0];
@@ -26,7 +37,7 @@ function showToDoList() {
         if (dataAttr === 'edit') {
           editToDo(toDoListData[i], i);
         } else {
-
+          removeToDo(i, toDoListItem);
         }
     };
     toDoListItems.appendChild(toDoListItem);
@@ -58,8 +69,8 @@ function editToDo(toDoObj, i) {
     localStorage.setItem('todos', JSON.stringify(toDoListData));
     showToDoList();
 
-    toDoForm.todo.value = '';
-    
+    clearForm();
+
     editBtnsContainer.classList.add('hidden');
     btnAdd.classList.remove('hidden');
   }
@@ -79,10 +90,16 @@ btnAdd.addEventListener('click', function () {
     const toDos = getToDos();
     toDos.push(toDoObj);
     localStorage.setItem('todos', JSON.stringify(toDos));
-    toDoForm.todo.value = '';
+    clearForm();
     showToDoList();
   }
 });
+
+function clearForm() {
+  toDoForm.todo.value = '';
+  toDoForm.priority.value = defaultPriority;
+  toDoForm.status.value = defaultStatus;
+}
 
 function fillSelect(dataArray, className) {
   const select = document.getElementsByClassName(className)[0];
@@ -100,6 +117,10 @@ function getData() {
     .then((data) => {
       fillSelect(data.priorities, 'todo-list-form__priority');
       fillSelect(data.statuses, 'todo-list-form__status');
+      defaultPriority = data.priorities[0];
+      defaultStatus = data.statuses[0];
+      priorities = data.priorities;
+      statuses = data.statuses;
     })
 }
 getData();
