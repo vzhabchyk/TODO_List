@@ -1,3 +1,33 @@
+body {
+  background-color: rgb(205, 233, 246);
+}
+
+.todo-list-items__item {
+  margin-bottom: 20px;
+}
+
+.todo-list-items__item span {
+  margin-right: 15px;
+  width: 200px;
+  display: inline-block;
+  font-size: 22px;
+}
+
 .hidden {
   display: none;
 }
+
+.btn-todo-action {
+  border: 2px solid rgb(29, 163, 58);
+  border-radius: 3px;
+  font-style: italic;
+  background-color: rgb(97, 180, 115);
+  cursor: pointer;
+}
+
+.btn-todo-action:hover,
+.btn-todo-action:focus {
+  background-color: rgb(31, 203, 233);
+  border: 2px solid rgb(5, 212, 248);
+}
+

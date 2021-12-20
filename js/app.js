@@ -4,8 +4,6 @@ const toDoForm = document.forms[0];
 const btnAdd = document.getElementsByClassName('todo-list-form__btn-add')[0];
 let defaultPriority;
 let defaultStatus;
-let priorities = [];
-let statuses = [];
 
 
 function removeToDo(index, toDoListItem) {
@@ -23,9 +21,9 @@ function showToDoList() {
     const toDoListItem = document.createElement('li');
     toDoListItem.classList.add('todo-list-items__item');
     toDoListItem.innerHTML = `
-      ${toDoListData[i].text} <span>${toDoListData[i].priority}</span><span>${toDoListData[i].status}</span>
-      <button data-attr="edit">Edit</button>
-      <button data-attr="remove">Remove</button>
+      <span>${toDoListData[i].text}</span> ${toDoListData[i].priority} &nbsp;${toDoListData[i].status}
+      <button data-attr="edit" class="btn-todo-action">Edit</button>
+      <button data-attr="remove" class="btn-todo-action">Remove</button>
     `;
 
     toDoListItem.onclick = function(event){
@@ -61,6 +59,7 @@ function editToDo(toDoObj, i) {
   toDoForm.todo.value = toDoObj.text;
   toDoForm.priority.value = toDoObj.priority;
   toDoForm.status.value = toDoObj.status;
+  
   editBtnsContainer.children[0].onclick = function() {
     const toDoListData = getToDos();
     toDoListData[i].text = toDoForm.todo.value;
@@ -71,6 +70,12 @@ function editToDo(toDoObj, i) {
 
     clearForm();
 
+    editBtnsContainer.classList.add('hidden');
+    btnAdd.classList.remove('hidden');
+  }
+
+  editBtnsContainer.children[1].onclick = function() {
+    clearForm();
     editBtnsContainer.classList.add('hidden');
     btnAdd.classList.remove('hidden');
   }
@@ -119,8 +124,6 @@ function getData() {
       fillSelect(data.statuses, 'todo-list-form__status');
       defaultPriority = data.priorities[0];
       defaultStatus = data.statuses[0];
-      priorities = data.priorities;
-      statuses = data.statuses;
     })
 }
 getData();
