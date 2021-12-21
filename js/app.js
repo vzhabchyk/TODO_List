@@ -41,7 +41,6 @@ function showToDoList() {
     toDoListItems.appendChild(toDoListItem);
   }
 } 
-showToDoList();
 
 function getToDos() {
   const toDos = localStorage.getItem('todos');
@@ -124,6 +123,17 @@ function getData() {
       fillSelect(data.statuses, 'todo-list-form__status');
       defaultPriority = data.priorities[0];
       defaultStatus = data.statuses[0];
+      const todos = getToDos();
+      for (let i = 0; i < todos.length; i++) {
+        if (!data.statuses.includes(todos[i].status)) {
+          todos[i].status = 'Not Defined';
+        }
+        if (!data.priorities.includes(todos[i].priority)) {
+          todos[i].priority = 'Not Defined';
+        }
+      }
+      localStorage.setItem('todos', JSON.stringify(todos));
+      showToDoList();
     })
 }
 getData();
