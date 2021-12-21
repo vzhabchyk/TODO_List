@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(205, 233, 246);
+  background-color: rgb(235 242 245);
 }
 
 .todo-list-items__item {
@@ -27,7 +27,6 @@ body {
 
 .btn-todo-action:hover,
 .btn-todo-action:focus {
-  background-color: rgb(31, 203, 233);
-  border: 2px solid rgb(5, 212, 248);
+  background-color: rgb(29, 163, 58);
 }
 
