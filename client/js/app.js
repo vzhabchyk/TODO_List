@@ -116,24 +116,20 @@ function fillSelect(dataArray, className) {
 }
 
 function getData() {
-  fetch('./data.json')
+  fetch('http://127.0.0.1:3000/data')
     .then((response) => response.json())
     .then((data) => {
       fillSelect(data.priorities, 'todo-list-form__priority');
       fillSelect(data.statuses, 'todo-list-form__status');
       defaultPriority = data.priorities[0];
       defaultStatus = data.statuses[0];
-      const todos = getToDos();
-      for (let i = 0; i < todos.length; i++) {
-        if (!data.statuses.includes(todos[i].status)) {
-          todos[i].status = 'Not Defined';
-        }
-        if (!data.priorities.includes(todos[i].priority)) {
-          todos[i].priority = 'Not Defined';
-        }
-      }
+    });
+
+  fetch('http://127.0.0.1:3000/todos')
+    .then((response) => response.json())
+    .then((todos) => {
       localStorage.setItem('todos', JSON.stringify(todos));
       showToDoList();
-    })
+    });
 }
 getData();

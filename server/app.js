@@ -3,6 +3,9 @@ const app = express();
 const port = 3000;
 const data = require('./data.json');
 const todolist = require('./todolist.json');
+const cors = require('cors');
+
+app.use(cors());
 
 app.get('/todos', function(req, res) {
   for (let i = 0; i < todolist.length; i++) {

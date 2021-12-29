@@ -1,10 +1,10 @@
 [
   { "text": "Buy cars!", "priority": "Major", "status": "Open" },
-  { "text": "Buy gifts!", "priority": "Not Defined", "status": "Not Defined" },
+  { "text": "Buy gifts!", "priority": "Minor", "status": "In progress" },
   {
     "text": "Finish Frontend pro!",
     "priority": "High",
-    "status": "Not Defined"
+    "status": "In progress"
   },
   { "text": "Happy New Year!", "priority": "High", "status": "Open" }
 ]
